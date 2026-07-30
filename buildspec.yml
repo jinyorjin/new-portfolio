@@ -1,0 +1,15 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      # 초기화용
+      - echo "Installing placeholder dependencies"
+  build:
+    commands:
+      - echo "Copying public contents to root for deployment"
+
+      - cp -r public/* .
+      - ls -al
+artifacts:
+  files:
+    - "**/*"

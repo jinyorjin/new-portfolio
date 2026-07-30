@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="./twemoji.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Eunjin Kim (Jin) — Full Stack Developer based in Melbourne. JavaScript, React, Python, AWS Cloud. Building real-world web applications with healthcare-level precision." />
+    <title>Eunjin Kim | Full Stack Developer</title>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K5X20TP798"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-K5X20TP798");
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- Firebase SDK (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore-compat.js"></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- Cursor glow -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- Deep space layers: nebula, starfields, scanline grid -->
+    <div class="cosmos-bg" aria-hidden="true">
+      <div class="nebula-bg">
+        <div class="nb nb-1"></div>
+        <div class="nb nb-2"></div>
+        <div class="nb nb-3"></div>
+        <div class="nb nb-4"></div>
+      </div>
+      <div class="starfield" id="starfield-far"></div>
+      <div class="starfield" id="starfield-mid"></div>
+      <div class="starfield" id="starfield-near"></div>
+    </div>
+
+    <!-- Particles -->
+    <div id="particles-js" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════════════════
+         NAVIGATION
+    ══════════════════════════════════════════ -->
+    <nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo" aria-label="Back to top">JIN<span class="logo-slash">//</span>DEV</a>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="#hero"        class="nav-link">Home</a></li>
+          <li><a href="#about"       class="nav-link">About</a></li>
+          <li><a href="#skills"      class="nav-link">Skills</a></li>
+          <li><a href="#experience"  class="nav-link">Experience</a></li>
+          <li><a href="#projects"    class="nav-link">Projects</a></li>
+          <li><a href="#visitor-map" class="nav-link">Visitor Map</a></li>
+          <li><a href="#contact"     class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════════
+         HERO — Developer travelling through a digital universe
+    ══════════════════════════════════════════ -->
+    <section id="hero" class="hero">
+
+      <!-- Animated galaxy visual: developer core + orbiting tech satellites -->
+      <div class="planet-stage" id="planet-stage" aria-hidden="true">
+        <div class="planet-system" id="planet-system">
+          <div class="planet-core">
+            <span class="planet-core-ring r1"></span>
+            <span class="planet-core-ring r2"></span>
+            <span class="planet-core-glow"></span>
+            <span class="planet-core-label">EK</span>
+          </div>
+
+          <div class="orbit orbit-a">
+            <span class="orbit-sat sat-react"><span>React</span></span>
+          </div>
+          <div class="orbit orbit-b">
+            <span class="orbit-sat sat-js"><span>JavaScript</span></span>
+          </div>
+          <div class="orbit orbit-c">
+            <span class="orbit-sat sat-aws"><span>AWS</span></span>
+          </div>
+          <div class="orbit orbit-d">
+            <span class="orbit-sat sat-python"><span>Python</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-inner">
+
+        <div class="hero-status-panel">
+          <div class="hero-status-row">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Available for Graduate / Junior Developer Opportunities</span>
+          </div>
+          <div class="hero-status-row">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Based in Melbourne</span>
+          </div>
+          <div class="hero-status-row">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Open to Full Stack, Cloud and Software roles</span>
+          </div>
+        </div>
+
+        <div class="hero-name-block">
+          <h1 class="hero-name">
+            <span class="hn-line" data-text="EUNJIN">EUNJIN</span>
+            <span class="hn-line hn-kim" data-text="KIM">KIM</span>
+          </h1>
+          <div class="hero-name-sub">
+            <span class="hn-jin">( JIN )</span>
+            <span class="hero-role">Full Stack Developer</span>
+          </div>
+          <div class="hero-locale-line">
+            <span>Melbourne, Australia</span>
+            <span class="hero-dot-sep" aria-hidden="true">&bull;</span>
+            <span class="hero-tech-line">React &middot; JavaScript &middot; Python &middot; C# &middot; AWS Cloud</span>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary" id="hero-projects-btn">
+            <span>Explore My Projects</span>
+          </a>
+          <a href="mailto:lqye92@gmail.com?subject=Hello%20Eunjin" class="btn btn-ghost" id="hero-contact-btn">
+            <span>Contact Me</span>
+          </a>
+          <a href="https://github.com/jinyorjin" target="_blank" rel="noopener noreferrer" class="btn btn-icon" id="hero-github-btn" aria-label="GitHub profile">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/eunjin-kim-02455a160" target="_blank" rel="noopener noreferrer" class="btn btn-icon" id="hero-linkedin-btn" aria-label="LinkedIn profile">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+
+        <div class="hero-signal">
+          <span class="signal-icon" aria-hidden="true">&#9679;</span>
+          <span><strong id="total-visitors">—</strong> visitors</span>
+          <span class="hero-signal-sep" aria-hidden="true"></span>
+          <span><strong id="today-visitors">—</strong> today</span>
+        </div>
+      </div>
+
+      <a href="#about" class="scroll-indicator" id="scroll-indicator" aria-label="Scroll to About section">
+        <span class="scroll-indicator-track"><span class="scroll-indicator-dot"></span></span>
+        <span class="scroll-indicator-label">Scroll</span>
+      </a>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         ABOUT — Mission Profile
+    ══════════════════════════════════════════ -->
+    <section id="about" class="section about-section reveal-section">
+      <div class="section-inner">
+        <div class="mission-profile">
+
+          <div class="profile-left">
+            <div class="section-eyebrow">01 &middot; Mission Profile</div>
+            <blockquote class="pullquote">
+              Healthcare<br>precision. <em>Developer</em><br>mindset.
+            </blockquote>
+
+            <div class="coord-panel">
+              <div class="coord-panel-head">
+                <span class="coord-dot" aria-hidden="true"></span>
+                <span>CREW COORDINATES</span>
+              </div>
+              <ul class="coord-list">
+                <li><span class="coord-key">LOCATION</span><span class="coord-val">Melbourne, Victoria, Australia</span></li>
+                <li><span class="coord-key">EMAIL</span><a class="coord-val coord-link" href="mailto:lqye92@gmail.com">lqye92@gmail.com</a></li>
+                <li><span class="coord-key">CONTACT</span><span class="coord-val coord-muted">0437 290 722</span></li>
+                <li><span class="coord-key">LINKEDIN</span><a class="coord-val coord-link" href="https://www.linkedin.com/in/eunjin-kim-02455a160" target="_blank" rel="noopener noreferrer">/eunjin-kim</a></li>
+                <li><span class="coord-key">GITHUB</span><a class="coord-val coord-link" href="https://github.com/jinyorjin" target="_blank" rel="noopener noreferrer">@jinyorjin</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="profile-right">
+            <p class="about-lead">
+              I'm Eunjin (Jin) Kim &mdash; a Full Stack Developer completing my
+              <strong>Bachelor of Computer Science at Deakin University</strong>,
+              with years of hands-on experience as a Dental Assistant at the
+              <strong>Royal Melbourne Dental Hospital</strong>.
+            </p>
+            <p>
+              Managing patient data systems (Titanium), navigating strict Australian
+              health data privacy protocols, and troubleshooting clinical software in
+              a fast-paced hospital environment gave me something most developers lack:
+              a deep instinct for data integrity, user trust, and systems that perform
+              under pressure.
+            </p>
+            <p>
+              Now I channel that same precision into full-stack development &mdash;
+              building React SPAs, Node.js APIs, CI/CD pipelines, and cloud-deployed
+              applications that are as reliable as they are polished.
+            </p>
+            <p class="about-highlight">
+              Healthcare experience meets software engineering &mdash; building
+              technology with real users in mind.
+            </p>
+
+            <a href="readme.html" target="_blank" class="btn btn-outline btn-sm" id="about-readme-btn">View Full README</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SKILLS — Developer Arsenal
+    ══════════════════════════════════════════ -->
+    <section id="skills" class="section skills-section reveal-section">
+      <div class="section-inner">
+        <div class="skills-header">
+          <div class="section-eyebrow">02 &middot; Developer Arsenal</div>
+          <h2 class="section-title">Technology Constellation</h2>
+          <p class="skills-sub">Tools I've actually shipped with, grouped by mission role.</p>
+        </div>
+
+        <div class="constellation-list">
+
+          <div class="constellation-row reveal-child" data-accent="purple">
+            <div class="constellation-meta">
+              <span class="constellation-num">01</span>
+              <span class="constellation-label">Frontend</span>
+            </div>
+            <div class="constellation-track">
+              <span class="chip chip-hot" data-desc="Primary UI library — used across BabyNaps and HappyTail.">React</span>
+              <span class="chip" data-desc="Used to build the HappyTail SPA with Pinia and Vite.">Vue 3</span>
+              <span class="chip" data-desc="Core language behind every project on this page.">JavaScript</span>
+              <span class="chip" data-desc="Semantic markup, accessibility-first structure.">HTML5</span>
+              <span class="chip" data-desc="Custom layouts, animation, responsive design.">CSS3</span>
+              <span class="chip" data-desc="Build tooling for the Vue 3 projects.">Vite</span>
+              <span class="chip" data-desc="Rapid UI scaffolding for smaller apps.">Bootstrap</span>
+              <span class="chip" data-desc="Motion and gesture layer used for smooth UI interactions.">Framer Motion</span>
+            </div>
+          </div>
+
+          <div class="constellation-row reveal-child" data-accent="cyan">
+            <div class="constellation-meta">
+              <span class="constellation-num">02</span>
+              <span class="constellation-label">Backend</span>
+            </div>
+            <div class="constellation-track">
+              <span class="chip chip-hot" data-desc="Server runtime for API and tooling work.">Node.js</span>
+              <span class="chip" data-desc="REST API framework used across coursework and projects.">Express.js</span>
+              <span class="chip" data-desc="Scripting, automation, and the SIT320 RL project.">Python</span>
+              <span class="chip" data-desc="Coursework in object-oriented systems.">Java</span>
+              <span class="chip" data-desc="University coursework in ASP.NET Core.">C#</span>
+              <span class="chip" data-desc="Backend framework studied at Deakin University.">ASP.NET Core</span>
+              <span class="chip" data-desc="Designed and consumed across full-stack projects.">REST APIs</span>
+            </div>
+          </div>
+
+          <div class="constellation-row reveal-child" data-accent="pink">
+            <div class="constellation-meta">
+              <span class="constellation-num">03</span>
+              <span class="constellation-label">Database</span>
+            </div>
+            <div class="constellation-track">
+              <span class="chip chip-hot" data-desc="Auth, Firestore and hosting across BabyNaps and this site.">Firebase</span>
+              <span class="chip" data-desc="Relational database coursework and projects.">MySQL</span>
+              <span class="chip" data-desc="Studied as part of Deakin's database units.">PostgreSQL</span>
+              <span class="chip" data-desc="NoSQL document store, coursework exposure.">MongoDB</span>
+            </div>
+          </div>
+
+          <div class="constellation-row reveal-child" data-accent="amber">
+            <div class="constellation-meta">
+              <span class="constellation-num">04</span>
+              <span class="constellation-label">Cloud &amp; DevOps</span>
+            </div>
+            <div class="constellation-track">
+              <span class="chip chip-hot" data-desc="Cloud computing coursework and deployment experiments.">AWS</span>
+              <span class="chip" data-desc="Containerisation studied and used for local dev environments.">Docker</span>
+              <span class="chip" data-desc="CI pipeline for BabyNaps &mdash; build, test, SonarQube scan.">Jenkins</span>
+              <span class="chip" data-desc="Hosting for every live demo linked on this page.">Netlify</span>
+              <span class="chip" data-desc="Automated build &amp; deploy pipelines for React apps.">CI/CD</span>
+              <span class="chip" data-desc="Static code quality scanning wired into the BabyNaps pipeline.">SonarQube</span>
+            </div>
+          </div>
+
+          <div class="constellation-row reveal-child" data-accent="muted">
+            <div class="constellation-meta">
+              <span class="constellation-num">05</span>
+              <span class="constellation-label">Tools</span>
+            </div>
+            <div class="constellation-track">
+              <span class="chip chip-hot" data-desc="Version control for every project shown here.">Git</span>
+              <span class="chip" data-desc="Repository hosting and collaboration.">GitHub</span>
+              <span class="chip" data-desc="Primary development environment.">VS Code</span>
+              <span class="chip" data-desc="Manual API testing during backend development.">Postman</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         EXPERIENCE & EDUCATION — Mission Timeline
+    ══════════════════════════════════════════ -->
+    <section id="experience" class="section exp-section reveal-section">
+      <div class="section-inner">
+        <div class="section-eyebrow">03 &middot; Mission Timeline</div>
+        <h2 class="section-title">Experience &amp; Education</h2>
+
+        <ul class="timeline">
+
+          <li class="timeline-item reveal-child" data-kind="edu">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <div class="timeline-checkpoint">Checkpoint 01</div>
+              <div class="timeline-period">2023 &ndash; Expected Trimester 2, 2026</div>
+              <div class="timeline-head">
+                <h3>Bachelor of Computer Science</h3>
+                <span class="timeline-badge edu">Education</span>
+              </div>
+              <div class="timeline-org">Deakin University, Melbourne</div>
+              <div class="timeline-subhead">Focus</div>
+              <ul class="timeline-focus-list">
+                <li>Artificial Intelligence</li>
+                <li>Full-Stack Development</li>
+                <li>Cloud Computing, including AWS and Azure</li>
+                <li>Data Structures</li>
+                <li>C# Programming</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal-child" data-kind="work">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <div class="timeline-checkpoint">Checkpoint 02</div>
+              <div class="timeline-period">April 2026 &ndash; June 2026</div>
+              <div class="timeline-head">
+                <h3>Software Development Intern</h3>
+                <span class="timeline-badge work">Experience</span>
+              </div>
+              <div class="timeline-org">IISRI</div>
+              <div class="timeline-subtitle">Next.js &amp; Data Integration</div>
+              <ul class="timeline-bullets">
+                <li>Completed a 160-hour software development placement.</li>
+                <li>Improved a Next.js and TypeScript scrolling survey feature.</li>
+                <li>Implemented progressive question display, response saving and final submission logic.</li>
+                <li>Tested multiple survey flow scenarios, including conditional question display and answer saving.</li>
+                <li>Supported improvements to usability, reliability and data accuracy.</li>
+                <li>Used Git and Sourcetree to manage task branches and review code changes.</li>
+                <li>Documented technical changes and project evidence.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal-child" data-kind="edu">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <div class="timeline-checkpoint">Checkpoint 03</div>
+              <div class="timeline-head">
+                <h3>Professional Certifications</h3>
+                <span class="timeline-badge edu">Education</span>
+              </div>
+              <div class="timeline-cert-badges">
+                <span class="cert-badge">OCI Foundations Associate</span>
+                <span class="cert-badge">OCI AI Foundations Associate <em>2025</em></span>
+                <span class="cert-badge">Postman Student Expert</span>
+                <span class="cert-badge">Cisco Networking Academy</span>
+                <span class="cert-badge">Arduino Fundamentals</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal-child" data-kind="work">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <div class="timeline-checkpoint">Checkpoint 04</div>
+              <div class="timeline-period">April 2019 &ndash; Present</div>
+              <div class="timeline-head">
+                <h3>Dental Assistant</h3>
+                <span class="timeline-badge work">Experience</span>
+              </div>
+              <div class="timeline-org">Royal Melbourne Dental Hospital, Melbourne</div>
+              <ul class="timeline-bullets">
+                <li>Manage more than 200 patient records weekly using Titanium software in a high-volume public hospital environment.</li>
+                <li>Maintain strong compliance with privacy and confidentiality requirements.</li>
+                <li>Troubleshoot workflow issues involving appointments, patient records, equipment preparation and clinical coordination.</li>
+                <li>Support clinicians, administrative staff and patients through clear communication and reliable day-to-day assistance.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal-child" data-kind="edu">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <div class="timeline-checkpoint">Checkpoint 05</div>
+              <div class="timeline-period">Completed 2023</div>
+              <div class="timeline-head">
+                <h3>Diploma of Information Technology</h3>
+                <span class="timeline-badge edu">Education</span>
+              </div>
+              <div class="timeline-org">Global Business College of Australia</div>
+              <div class="timeline-subhead">Skills</div>
+              <ul class="timeline-focus-list">
+                <li>React</li>
+                <li>Node.js</li>
+                <li>REST APIs</li>
+                <li>Database Management</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal-child" data-kind="work">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <div class="timeline-checkpoint">Checkpoint 06</div>
+              <div class="timeline-period">Prior</div>
+              <div class="timeline-head">
+                <h3>Dental Assistant</h3>
+                <span class="timeline-badge work">Experience</span>
+              </div>
+              <div class="timeline-org">My Dental Clinic</div>
+              <p class="timeline-body">Led the clinic's digital record transition from paper-based systems, managed day-to-day IT operations, and delivered technical support for clinical software — early hands-on exposure to system migrations and user support.</p>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal-child" data-kind="edu">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <div class="timeline-checkpoint">Checkpoint 07</div>
+              <div class="timeline-period">Korea</div>
+              <div class="timeline-head">
+                <h3>Diploma of Dental Hygiene</h3>
+                <span class="timeline-badge edu">Education</span>
+              </div>
+              <div class="timeline-org">Ulsan College (울산과학대학교)</div>
+              <p class="timeline-body">Clinical dental hygiene qualification with deep knowledge in healthcare data management, patient privacy, and procedural precision — foundations that transfer directly into building trustworthy software.</p>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal-child" data-kind="edu">
+            <div class="timeline-node" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <div class="timeline-checkpoint">Checkpoint 08</div>
+              <div class="timeline-period">Australia</div>
+              <div class="timeline-head">
+                <h3>Certificate III in Dental Assisting</h3>
+                <span class="timeline-badge edu">Education</span>
+              </div>
+              <div class="timeline-org">Completed in Australia</div>
+              <p class="timeline-body">Australian-accredited qualification enabling clinical practice and complementing the transition from international healthcare into Australian technology roles.</p>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         PROJECTS — Built in My Orbit
+    ══════════════════════════════════════════ -->
+    <section id="projects" class="section projects-section reveal-section">
+      <div class="section-inner">
+        <div class="projects-header">
+          <div class="section-eyebrow">04 &middot; Selected Missions</div>
+          <h2 class="section-title">Selected Missions</h2>
+          <p class="projects-sub">Industry, backend, mobile, cloud and data projects selected to show my strongest development experience.</p>
+        </div>
+
+        <!-- Featured missions -->
+        <div class="featured-missions">
+
+          <article class="mission-card mission-feature-lg mission-card--detailed" aria-label="Urban Streetscape Intervention Analysis project">
+            <div class="mission-media">
+              <div class="mission-placeholder ph-1" aria-hidden="true"></div>
+              <div class="mission-overlay" aria-hidden="true"></div>
+              <div class="mission-spotlight" aria-hidden="true"></div>
+            </div>
+            <div class="mission-info">
+              <div class="mission-top">
+                <span class="mission-tag">Mission 01</span>
+                <span class="mission-status status-progress">In Progress</span>
+              </div>
+              <h3 class="mission-title">Urban Streetscape Intervention Analysis</h3>
+              <div class="mission-meta-row">
+                <span>Infrastructure Victoria</span>
+                <span class="meta-sep" aria-hidden="true">&middot;</span>
+                <span>Industry Capstone Project</span>
+                <span class="meta-sep" aria-hidden="true">&middot;</span>
+                <span>July 2026 &ndash; Present</span>
+              </div>
+              <p class="mission-role"><strong>Role:</strong> Data Engineering Stream</p>
+              <p class="mission-desc">An industry capstone project examining how cycling infrastructure, pedestrian upgrades and road-space changes affect transport activity, parking use and urban movement across Victoria.</p>
+              <div class="mission-contrib">
+                <span class="mission-contrib-label">My Contribution</span>
+                <ul class="mission-contrib-list">
+                  <li>Contributing to a data engineering stream analysing cycling, pedestrian and road infrastructure interventions.</li>
+                  <li>Supporting the collection, cleaning and integration of public transport and streetscape datasets.</li>
+                  <li>Reviewing missing values, duplicate records, data quality and geographic coverage.</li>
+                  <li>Documenting dataset structures, quality checks and repeatable data preparation processes.</li>
+                  <li>Collaborating with analytics, research and dashboard team members.</li>
+                  <li>Supporting analysis and reporting for Infrastructure Victoria.</li>
+                </ul>
+              </div>
+              <div class="mission-stack">
+                <span>Python</span><span>Data Cleaning</span><span>Data Engineering</span><span>Public Datasets</span><span>GitHub</span><span>Data Quality</span><span>Transport Data</span>
+              </div>
+              <div class="mission-links">
+                <a href="https://github.com/Chameleon-company/Victoria-Urban-Planning" target="_blank" rel="noopener noreferrer" class="mission-link mission-link-primary" id="urbanstreetscape-github">GitHub Repository <span class="ext-icon" aria-hidden="true">&#8599;</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="mission-card mission-feature-md mission-card--detailed" aria-label="Aboriginal Art Gallery Discovery Backend project">
+            <div class="mission-media">
+              <div class="mission-placeholder ph-3" aria-hidden="true"></div>
+              <div class="mission-overlay" aria-hidden="true"></div>
+              <div class="mission-spotlight" aria-hidden="true"></div>
+            </div>
+            <div class="mission-info">
+              <div class="mission-top">
+                <span class="mission-tag">Mission 02</span>
+                <span class="mission-status status-completed">Completed</span>
+              </div>
+              <h3 class="mission-title">Aboriginal Art Gallery Discovery Backend</h3>
+              <div class="mission-meta-row"><span>Backend Development Project</span></div>
+              <p class="mission-desc">A backend service for discovering Aboriginal art galleries, artworks and nearby locations.</p>
+              <div class="mission-contrib">
+                <span class="mission-contrib-label">My Contribution</span>
+                <ul class="mission-contrib-list">
+                  <li>Developed backend APIs using ASP.NET Core.</li>
+                  <li>Created three controllers for locations, artworks and nearby discovery.</li>
+                  <li>Implemented nearby search using the Haversine distance formula.</li>
+                  <li>Managed data using Entity Framework Core and PostgreSQL.</li>
+                  <li>Tested APIs using Swagger, Postman and Newman.</li>
+                  <li>Completed 15 API requests with zero test failures.</li>
+                </ul>
+              </div>
+              <div class="mission-stack">
+                <span>ASP.NET Core</span><span>C#</span><span>Entity Framework Core</span><span>PostgreSQL</span><span>Swagger</span><span>Postman</span><span>Newman</span><span>REST APIs</span>
+              </div>
+              <div class="mission-links">
+                <a href="https://github.com/jinyorjin/Build-Your-Own-Backend-5.2HD" target="_blank" rel="noopener noreferrer" class="mission-link mission-link-primary" id="artgallery-github">GitHub Repository <span class="ext-icon" aria-hidden="true">&#8599;</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="mission-card mission-feature-md mission-card--detailed" aria-label="Dental Easy project">
+            <div class="mission-media">
+              <div class="mission-placeholder ph-4" aria-hidden="true"></div>
+              <div class="mission-overlay" aria-hidden="true"></div>
+              <div class="mission-spotlight" aria-hidden="true"></div>
+            </div>
+            <div class="mission-info">
+              <div class="mission-top">
+                <span class="mission-tag">Mission 03</span>
+                <span class="mission-status status-completed">Completed</span>
+              </div>
+              <h3 class="mission-title">Dental Easy</h3>
+              <div class="mission-meta-row"><span>AI Dental Explanation Android App</span></div>
+              <p class="mission-desc">An Android app that explains dental terms and after-care instructions in simple English for patients &mdash; connecting my healthcare background with software development.</p>
+              <div class="mission-contrib">
+                <span class="mission-contrib-label">My Contribution</span>
+                <ul class="mission-contrib-list">
+                  <li>Built the application using Java.</li>
+                  <li>Integrated Gemini AI with local fallback responses for reliability.</li>
+                  <li>Added urgent symptom checks.</li>
+                  <li>Added search history and sharing features.</li>
+                  <li>Developed using JDK 17 and Target SDK 36.</li>
+                </ul>
+              </div>
+              <div class="mission-stack">
+                <span>Java</span><span>Android</span><span>Gemini AI</span><span>JDK 17</span><span>Local Fallback Logic</span><span>Mobile Development</span>
+              </div>
+              <div class="mission-links">
+                <a href="https://github.com/jinyorjin/SIT305-HD-Task4.0-DentalEasy" target="_blank" rel="noopener noreferrer" class="mission-link mission-link-primary" id="dentaleasy-github">GitHub Repository <span class="ext-icon" aria-hidden="true">&#8599;</span></a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Other selected projects -->
+        <div class="other-missions-header">
+          <span class="other-missions-label">Other Selected Projects</span>
+          <span class="other-missions-rule" aria-hidden="true"></span>
+        </div>
+
+        <div class="orbit-grid">
+
+          <article class="mission-card mission-sm tilt-card" aria-label="BabyNaps project">
+            <div class="mission-media">
+              <img src="assets/Babynaps.png" alt="BabyNaps sleep tracker app" class="mission-img" loading="lazy" />
+              <div class="mission-overlay" aria-hidden="true"></div>
+              <div class="mission-spotlight" aria-hidden="true"></div>
+            </div>
+            <div class="mission-info">
+              <div class="mission-top-inline">
+                <span class="mission-tag">Mission 04</span>
+                <span class="mission-award">High Distinction</span>
+              </div>
+              <h3 class="mission-title mission-title-sm">Baby Naps Sleep Tracker</h3>
+              <p class="mission-desc">A responsive sleep tracking app with real-time caregiver data synchronisation via Firebase Firestore. Automated Jenkins CI/CD pipeline with SonarQube checks, cutting manual deployment time by roughly 20%.</p>
+              <div class="mission-stack"><span>React</span><span>Firebase</span><span>Firestore</span><span>Jenkins</span><span>SonarQube</span><span>CI/CD</span><span>Netlify</span></div>
+              <div class="mission-links">
+                <a href="https://soft-clafoutis-351121.netlify.app/" target="_blank" rel="noopener noreferrer" class="mission-link" id="babynaps-demo">Live Demo <span class="ext-icon" aria-hidden="true">&#8599;</span></a>
+                <a href="https://github.com/jinyorjin/babynaps" target="_blank" rel="noopener noreferrer" class="mission-link ghost" id="babynaps-github">View GitHub <span class="ext-icon" aria-hidden="true">&#8599;</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="mission-card mission-sm tilt-card" aria-label="Garmin Watch Integration project">
+            <div class="mission-media">
+              <div class="mission-placeholder ph-2" aria-hidden="true"></div>
+              <div class="mission-overlay" aria-hidden="true"></div>
+              <div class="mission-spotlight" aria-hidden="true"></div>
+            </div>
+            <div class="mission-info">
+              <span class="mission-tag">Mission 05</span>
+              <h3 class="mission-title mission-title-sm">Garmin Watch Integration</h3>
+              <p class="mission-desc">A collaborative health-tracking project for Garmin wearable devices, built in a 16-member Agile team. Designed wearable-to-cloud API integration flows and validated alert logic across 20+ test scenarios.</p>
+              <div class="mission-stack"><span>Monkey C</span><span>C#</span><span>REST APIs</span><span>Garmin SDK</span><span>Agile</span><span>Testing</span></div>
+            </div>
+          </article>
+
+          <article class="mission-card mission-sm tilt-card" aria-label="HappyTail project">
+            <div class="mission-media">
+              <img src="assets/happytail.png" alt="HappyTail responsive Vue SPA" class="mission-img" loading="lazy" />
+              <div class="mission-overlay" aria-hidden="true"></div>
+              <div class="mission-spotlight" aria-hidden="true"></div>
+            </div>
+            <div class="mission-info">
+              <div class="mission-top-inline">
+                <span class="mission-tag">Mission 06</span>
+                <span class="mission-award">High Distinction</span>
+              </div>
+              <h3 class="mission-title mission-title-sm">Happy Tails Pet Shop SPA</h3>
+              <p class="mission-desc">A responsive Single Page Application for a pet shop, built with centralised state management and accessible design using Vue 3 and Pinia.</p>
+              <div class="mission-stack"><span>Vue 3</span><span>Pinia</span><span>JavaScript</span><span>Responsive Design</span><span>Accessibility</span></div>
+              <div class="mission-links">
+                <a href="https://happytaildeakin.netlify.app/#/" target="_blank" rel="noopener noreferrer" class="mission-link" id="happytail-demo">Live Demo <span class="ext-icon" aria-hidden="true">&#8599;</span></a>
+                <a href="https://github.com/jinyorjin/sti120-happytail" target="_blank" rel="noopener noreferrer" class="mission-link ghost" id="happytail-github">View GitHub <span class="ext-icon" aria-hidden="true">&#8599;</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="mission-card mission-sm tilt-card" aria-label="Bayesian Network Optimisation project">
+            <div class="mission-media">
+              <img src="assets/sit320hd.png" alt="Bayesian Network Optimisation reinforcement learning project" class="mission-img" loading="lazy" />
+              <div class="mission-overlay" aria-hidden="true"></div>
+              <div class="mission-spotlight" aria-hidden="true"></div>
+            </div>
+            <div class="mission-info">
+              <div class="mission-top-inline">
+                <span class="mission-tag">Mission 07</span>
+                <span class="mission-award">High Distinction</span>
+              </div>
+              <h3 class="mission-title mission-title-sm">Bayesian Network Optimisation</h3>
+              <p class="mission-desc">A Python-based project exploring reinforcement learning approaches for Bayesian Network structure discovery, evaluating accuracy and performance trade-offs.</p>
+              <div class="mission-stack"><span>Python</span><span>Reinforcement Learning</span><span>Bayesian Networks</span><span>Data Analysis</span></div>
+              <div class="mission-links">
+                <a href="https://jinyorjin.github.io/SIT320.HD/" target="_blank" rel="noopener noreferrer" class="mission-link" id="sit320-demo">View Page <span class="ext-icon" aria-hidden="true">&#8599;</span></a>
+                <a href="https://github.com/jinyorjin/SIT320.HD" target="_blank" rel="noopener noreferrer" class="mission-link ghost" id="sit320-github">View GitHub <span class="ext-icon" aria-hidden="true">&#8599;</span></a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         VISITOR MAP — Global Signal Map
+    ══════════════════════════════════════════ -->
+    <section id="visitor-map" class="section map-section reveal-section">
+      <div class="section-inner">
+        <div class="section-eyebrow">05 &middot; Global Signal Map</div>
+        <h2 class="section-title">Visitors Across Earth</h2>
+
+        <div class="vstat-row">
+          <div class="vstat-card">
+            <span class="vstat-num" id="total-visitors-map">—</span>
+            <span class="vstat-label">Total Visitors</span>
+          </div>
+          <div class="vstat-card">
+            <span class="vstat-num" id="today-visitors-map">—</span>
+            <span class="vstat-label">Today</span>
+          </div>
+        </div>
+
+        <div class="map-card">
+          <div class="map-hud-corner tl" aria-hidden="true"></div>
+          <div class="map-hud-corner tr" aria-hidden="true"></div>
+          <div class="map-hud-corner bl" aria-hidden="true"></div>
+          <div class="map-hud-corner br" aria-hidden="true"></div>
+          <div class="map-hud-label">
+            <span class="signal-icon" aria-hidden="true">&#9679;</span>
+            LIVE FEED // EARTH GRID
+          </div>
+          <div id="map" role="region" aria-label="Interactive visitor world map"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CONTACT — Beyond Ordinary
+    ══════════════════════════════════════════ -->
+    <section id="contact" class="section contact-section reveal-section">
+      <div class="contact-horizon" aria-hidden="true"></div>
+      <div class="section-inner contact-inner">
+        <div class="section-eyebrow">06 &middot; Transmission</div>
+        <h2 class="contact-headline">
+          Let's Build Something<br><em>Beyond Ordinary.</em>
+        </h2>
+        <p class="contact-sub">Open to full-time roles, internships, and collaborative projects &mdash; Melbourne, Australia.</p>
+        <div class="contact-cta">
+          <a href="mailto:lqye92@gmail.com?subject=Hello%20Eunjin" class="btn btn-primary btn-lg" id="contact-email-btn">Send Me an Email</a>
+          <a href="https://www.linkedin.com/in/eunjin-kim-02455a160" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-lg" id="contact-linkedin-btn">Connect on LinkedIn</a>
+          <a href="https://github.com/jinyorjin" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-lg" id="contact-github-btn">View GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════════ -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <a href="#hero" class="footer-logo" aria-label="Back to top">JIN<span class="logo-slash">//</span>DEV</a>
+          <p class="footer-tagline">Full Stack Developer &middot; Melbourne, VIC</p>
+          <p class="footer-copy">&copy; <span id="footer-year"></span> Eunjin Kim. All rights reserved.</p>
+        </div>
+        <div class="footer-center">
+          <p class="footer-qr-label">Scan to visit</p>
+          <img src="assets/qr-code.png" alt="QR code linking to this portfolio" class="qr-img" loading="lazy" />
+        </div>
+        <div class="footer-right">
+          <a href="mailto:lqye92@gmail.com" class="footer-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            lqye92@gmail.com
+          </a>
+          <a href="https://www.linkedin.com/in/eunjin-kim-02455a160" target="_blank" rel="noopener noreferrer" class="footer-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/jinyorjin" target="_blank" rel="noopener noreferrer" class="footer-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Particles.js CDN + config -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      if (typeof particlesJS !== 'undefined') {
+        particlesJS("particles-js", {
+          particles: {
+            number: { value: 70, density: { enable: true, value_area: 900 } },
+            color: { value: ["#a855f7", "#22d3ee", "#ec4899", "#ffffff", "#3b82f6"] },
+            shape: { type: "circle" },
+            opacity: {
+              value: 0.5,
+              random: true,
+              anim: { enable: true, speed: 0.8, opacity_min: 0.05, sync: false }
+            },
+            size: { value: 1.8, random: true },
+            line_linked: { enable: false },
+            move: {
+              enable: true,
+              speed: 0.4,
+              direction: "none",
+              random: true,
+              straight: false,
+              out_mode: "out"
+            }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "bubble" },
+              onclick: { enable: true, mode: "push" }
+            },
+            modes: {
+              bubble: { distance: 140, size: 4, duration: 0.4, opacity: 0.9 },
+              push: { particles_nb: 3 }
+            }
+          },
+          retina_detect: true
+        });
+      }
+    </script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
