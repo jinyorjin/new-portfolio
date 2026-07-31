@@ -1,14 +1,3 @@
-my-homepage-2026
-
-Just a simple personal site, hosted on S3 as a static website.
-
-Live here: http://my-homepage-2026.s3-website-ap-southeast-2.amazonaws.com/
-
-What's in here
-index.html — main page
-style.css — styling
-script.js — scripts
-assets/ — images and other files
 How it's deployed
 
 Uploaded straight to an S3 bucket with static website hosting turned on. No build step, no framework, just plain HTML/CSS/JS.
